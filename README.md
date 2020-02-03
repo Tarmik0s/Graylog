@@ -1,0 +1,2 @@
+# Graylog
+Installation of Graylog
