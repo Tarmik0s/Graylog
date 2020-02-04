@@ -1,0 +1,45 @@
+Install Java 
+
+>  yum –y install java-1.8.0-openjdk 
+
+Install Elastic Search
+> wget  https://artifacts.elastic.co/GPG-KEY-elasticsearch 
+> rpm –import { file } 
+
+> vi /etc/yum.repos.d/elasticsearch.repo 
+    [elasticsearch-6.x] 
+    name=Elasticsearch repository for 6.x packages 
+    baseurl=https://artifacts.elastic.co/packages/6.x/yum 
+    gpgcheck=1 
+    gpgkey=https://artifacts.elastic.co/GPG-KEY-elasticsearch 
+    enabled=1 
+    autorefresh=1 
+    type=rpm-md 
+  
+> yum –y install elasticsearch
+> systemctl start elasticsearch
+> systemctl enable elasticsearch
+Install MongoDB
+
+> vi /etc/yum.repos.d/mongodb-org-4.0.repo 
+    [mongodb-org-4.0] 
+    name=MongoDB Repository 
+    baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/ 
+    gpgcheck=1 
+    enabled=1 
+    gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc 
+   
+>  yum install -y mongodb-org 
+>  systemctl start mongod
+>  systemctl enable mongod
+
+Install Graylog
+
+> rpm -Uvh https://packages.graylog2.org/repo/packages/graylog-3.0-repository_latest.rpm 
+> yum install graylog-server -y 
+> systemctl start graylog-server.service 
+> systemctl enable graylog-server.service
+> vi /etc/graylog/server/server.conf 
+   password_secret // run pwgen -N 1 -s 16
+   root_password_sha2 // run echo –n admin | sha256sum
+  
